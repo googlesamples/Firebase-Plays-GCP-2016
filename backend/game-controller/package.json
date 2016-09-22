@@ -1,0 +1,28 @@
+{
+  "name": "game-control",
+  "version": "1.0.0",
+  "description": "Game controller to relay keystrokes",
+  "main": "game-controller.js",
+  "private": "true",
+  "dependencies": {
+    "chance": "^1.0.3",
+    "firebase": "firebase_npm",
+    "gcloud": "^0.32.0",
+    "prompt": "^1.0.0",
+    "robotjs": "^0.3.7",
+    "sleep": "^3.0.1"
+  },
+  "keywords": [
+    "game",
+    "controller",
+    "keystrokes"
+  ],
+  "author": "Google Inc.",
+  "contributors": [
+    {
+      "name": "Bret McGowen",
+      "url": "https://twitter.com/bretmcg"
+    }
+  ],
+  "license": "Apache-2.0"
+}

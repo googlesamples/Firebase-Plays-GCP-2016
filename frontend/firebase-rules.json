@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "chat": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "commands-archive": {
+      ".read": false,
+      ".write": "auth != null"
+    },
+    "commands": {
+      ".read": "auth != null",
+      ".write": true
+    }
+  }
+}
