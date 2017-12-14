@@ -17,25 +17,23 @@
 'use strict';
 
 var config = require('./config.js');
-var gcloud = require('gcloud')({
+var bigquery = require('@google-cloud/bigquery')({
   keyFilename: config.firebase.serviceAccountFilePath,
   projectId: config.projectId
 });
-
-var firebase = require('firebase');
+var admin = require("firebase-admin");
 var robot = require('robotjs');
 
 // Configure BigQuery settings.
-var table = gcloud.bigquery().dataset(config.dataset).table(config.table);
+var table = bigquery.dataset(config.dataset).table(config.table);
 
 console.log('Connecting to ' + config.firebase.databaseUrl);
-firebase.initializeApp({
-  serviceAccount: config.firebase.serviceAccountFilePath,
-  databaseURL: config.firebase.databaseUrl,
-  authDomain: config.firebase.authDomain,
-  projectId: config.firebase.projectId
+var serviceAccount = require(config.firebase.serviceAccountFilePath);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: config.firebase.databaseUrl
 });
-var db = firebase.database();
+var db = admin.database();
 
 var commandsRef = db.ref(config.firebase.commandsQueueNode);
 var commandsArchiveRef = db.ref(config.firebase.commandsArchiveNode);

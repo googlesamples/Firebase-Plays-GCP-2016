@@ -45,7 +45,7 @@ var config = {
   projectId: '...'
 };
 ```
-Replace the placeholders in [frontend/config.js](frontend/config.js) with these values.
+Replace the placeholders in [frontend/public/config.js](frontend/public/config.js) with these values.
 
 ### Firebase security settings
 We require users to be authenticated to write messages to the chat node or read from the
@@ -80,18 +80,18 @@ server in the next section.
 
 ## Enable Speech and Translate APIs
 
-- [Click here](console.cloud.google.com/apis/api/speech/overview) to make sure the Cloud Speech API is enabled for your project.
-- [Click here](console.cloud.google.com/apis/api/translate/overview) to make sure the Cloud Translate API is enabled for your project.
+- [Click here](https://console.cloud.google.com/apis/library/speech.googleapis.com) to make sure the Cloud Speech API is enabled for your project.
+- [Click here](https://console.cloud.google.com/apis/api/translate/overview) to make sure the Cloud Translate API is enabled for your project.
 
 ## Create the game server
-[Create a Windows virtual machine](https://console.cloud.google.com/launcher/details/windows-cloud/windows-server-2012-r2) using the Cloud Launcher. Click **Launch on Compute Engine** and then click **Create** on the next page.
+[Create a Windows virtual machine](https://console.cloud.google.com/launcher/details/windows-cloud/windows-server-2016?q=windows%20server%202016) using the Cloud Launcher. Click **Launch on Compute Engine** and then click **Create** on the next page.
 
  Install the following on the Windows virtual machine:
   - [Google Chrome](https://www.google.com/chrome/browser)
-  - [gcloud](https://cloud.google.com/sdk/downloads#windows) - the Cloud SDK for Google Cloud Platform.
+  - [gcloud](https://cloud.google.com/sdk/downloads#windows) - the Cloud SDK for Google Cloud Platform. Should already be preinstalled on your Windows virtual machine.
   - [Node.js](https://nodejs.org/en/download/)
-  - [Python](https://www.python.org/downloads/windows/)
-  - [Visual Studio Express 2013](https://www.microsoft.com/en-us/download/details.aspx?id=44914) to address [this MSBUILD issue](https://github.com/chjj/pty.js/issues/60).
+  - [Python](https://www.python.org/downloads/windows/) (and add to PATH)
+  - As administrator run ```npm install --global --production windows-build-tools``` and then ```npm config set msvs_version 2015 --global``` to address [this MSBUILD issue](https://github.com/chjj/pty.js/issues/60).
   - [Install git](https://git-scm.com/download/win)
 
 ### Optional: YouTube live streaming
@@ -101,7 +101,7 @@ server in the next section.
 ## Set up BigQuery
 1. [Go to the BigQuery page](https://bigquery.cloud.google.com) for your project.
 1. Create a **new dataset** named ```firebase_plays```.
-2. Create a new table named ```commands```. Under schema, click **Edit as Text** and paste in the contents of the [table-schema.json](backend/bigquery/table-schema.json) file.
+2. Create a **new table** named ```commands```. Choose **Empty Data source**, and then under schema, click **Edit as Text** and paste in the contents of the [table-schema.json](backend/bigquery/table-schema.json) file.
 
 ## Deploy the web app
 
@@ -116,7 +116,7 @@ To deploy, run the following command in the `frontend` folder:
 ## Run the game and Node.js game-controller app
 1. Install and run whatever game you'd like to run on your game server. The script only supports the arrow keys on the keyboard by default.
 1. On the Windows game server, run the following commands in the **git bash** terminal:
-      1. ```git clone https://github.com/bretmcg/firebaseplays```
+      1. ```git clone https://github.com/googlesamples/Firebase-Plays-GCP-2016```
       1. ```cd backend/game-controller```
       1. Copy the Firebase service account ```firebase-plays.json``` that you created in a previous step to ```backend/game-controller``` on the Windows game server.
       1. Edit ```config.js``` to include the API key, Project ID, Auth Domain, and Database URL values from your Firebase project.

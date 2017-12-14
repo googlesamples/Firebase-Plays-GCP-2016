@@ -23,7 +23,7 @@ module.exports = {
     databaseUrl: '',
     commandsQueueNode: 'commands',
     commandsArchiveNode: 'commands-archive',
-    serviceAccountFilePath: 'firebase-plays.json'
+    serviceAccountFilePath: './firebase-plays.json'
   },
   projectId: '',
   dataset: 'firebase_plays',

@@ -5,11 +5,11 @@
   "main": "game-controller.js",
   "private": "true",
   "dependencies": {
+    "@google-cloud/bigquery": "^0.11.1",
     "chance": "^1.0.3",
-    "firebase": "firebase_npm",
-    "gcloud": "^0.32.0",
+    "firebase-admin": "^5.5.1",
     "prompt": "^1.0.0",
-    "robotjs": "^0.3.7",
+    "robotjs": "^0.4.7",
     "sleep": "^3.0.1"
   },
   "keywords": [
